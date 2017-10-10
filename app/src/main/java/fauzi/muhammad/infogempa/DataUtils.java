@@ -8,12 +8,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by fauzi on 10/10/2017.
- */
+//Created by fauzi on 10/10/2017.
 
-public class DataUtils {
-    public static List<Gempa> parseJsonString(String s) throws JSONException {
+class DataUtils {
+    static List<Gempa> parseJsonString(String s) throws JSONException {
 
         List<Gempa> gempaList = new ArrayList<>();
 

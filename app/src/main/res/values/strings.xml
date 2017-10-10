@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Info Gempa</string>
+    <string name="satuan_jarak">km</string>
 </resources>

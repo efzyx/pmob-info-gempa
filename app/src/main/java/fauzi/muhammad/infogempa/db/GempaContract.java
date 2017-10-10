@@ -2,9 +2,7 @@ package fauzi.muhammad.infogempa.db;
 
 import android.provider.BaseColumns;
 
-/**
- * Created by fauzi on 10/10/2017.
- */
+//Created by fauzi on 10/10/2017.
 
 public class GempaContract {
     //Constructor dibuat private agar tidak bisa diinstantiate

@@ -31,7 +31,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import fauzi.muhammad.infogempa.db.GempaContract;
-import fauzi.muhammad.infogempa.db.GempaDbHelper;
+import fauzi.muhammad.infogempa.db.DbHelper;
+
+import static fauzi.muhammad.infogempa.db.GempaContract.GempaEntry.TABLE_NAME;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         mGempaAdapter.setData(data);
     }
 
-    public class UsgsTask extends AsyncTask<URL, Void, String> {
+    private class UsgsTask extends AsyncTask<URL, Void, String> {
 
         protected String doInBackground(URL... urls) {
             URL url = urls[0];
@@ -165,13 +167,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean isConnectedToInternet(){
         ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = (activeNetwork != null) &&  (activeNetwork.isConnectedOrConnecting());
-
-        return isConnected;
+        return (activeNetwork != null) &&  (activeNetwork.isConnectedOrConnecting());
     }
 
     public void loadDatafromDb(){
-        GempaDbHelper dbHelper = new GempaDbHelper(this);
+        DbHelper dbHelper = new DbHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String[] projection = {
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 //        String sortOrder = null;
 
         Cursor c = db.query(
-                GempaContract.GempaEntry.TABLE_NAME,
+                TABLE_NAME,
                 projection,
                 null,
                 null,
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         List<Gempa> listGempa = new ArrayList<>();
         while(c.moveToNext()){
             double magnitude = c.getDouble(c.getColumnIndexOrThrow(GempaContract.GempaEntry.COLUMN_NAME_MAGNITUDE));
-            String place = c.getString(c.getColumnIndexOrThrow(GempaContract.GempaEntry.COLUMN_NAME_PLACE));;
+            String place = c.getString(c.getColumnIndexOrThrow(GempaContract.GempaEntry.COLUMN_NAME_PLACE));
             Date date = new Date(c.getLong(c.getColumnIndexOrThrow(GempaContract.GempaEntry.COLUMN_NAME_DATE)));
             double depth= c.getDouble(c.getColumnIndexOrThrow(GempaContract.GempaEntry.COLUMN_NAME_DEPTH));
             String longitude = c.getString(c.getColumnIndexOrThrow(GempaContract.GempaEntry.COLUMN_NAME_LONGITUDE));
@@ -212,11 +212,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void saveGempaToDb(List<Gempa> listGempa){
-        GempaDbHelper dbHelper = new GempaDbHelper(this);
+        DbHelper dbHelper = new DbHelper(this);
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         //TRUNCATE semua record supaya data baru disimpan
-        db.delete(GempaContract.GempaEntry.TABLE_NAME, null, null);
+        db.delete(TABLE_NAME, null, null);
         for (Gempa gempa : listGempa) {
             ContentValues cv = new ContentValues();
             cv.put(GempaContract.GempaEntry.COLUMN_NAME_MAGNITUDE, gempa.magnitude);
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
             cv.put(GempaContract.GempaEntry.COLUMN_NAME_LONGITUDE, gempa.longitude);
             cv.put(GempaContract.GempaEntry.COLUMN_NAME_LATITUDE, gempa.latitude);
             cv.put(GempaContract.GempaEntry.COLUMN_NAME_TSUNAMI, gempa.tsunami);
-            db.insert(GempaContract.GempaEntry.TABLE_NAME, null, cv);
+            db.insert(TABLE_NAME, null, cv);
         }
 
     }
