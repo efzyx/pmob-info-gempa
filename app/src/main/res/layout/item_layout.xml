@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/text_magnitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="4.6"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="16dp"
+        android:text="8km NNE of East Foothills, California"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="2017-09-21 05:56:50 (UTC)"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="@+id/text_place"
+        app:layout_constraintTop_toBottomOf="@+id/text_place" />
+
+    <TextView
+        android:id="@+id/text_depth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="7.2 km"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_date"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textCoor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-11dp"
+        android:text="TextView"
+        android:textSize="11sp"
+        app:layout_constraintTop_toTopOf="@+id/text_date"
+        app:layout_constraintLeft_toRightOf="@+id/text_date"
+        android:layout_marginLeft="10dp" />
+
+    <ImageView
+        android:id="@+id/icTsunami"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_depth"
+        app:layout_constraintLeft_toRightOf="@+id/text_place"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_refresh" />
+</android.support.constraint.ConstraintLayout>
