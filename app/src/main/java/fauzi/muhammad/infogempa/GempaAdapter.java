@@ -50,7 +50,8 @@ class GempaAdapter extends RecyclerView.Adapter<GempaAdapter.GempaHolder>{
         holder.mTextCoor.setText(gempa.longitude+","+gempa.latitude);
         SimpleDateFormat formatter = new SimpleDateFormat("Y-M-d H:m:s", Locale.getDefault());
         holder.mTextDate.setText(formatter.format(gempa.date));
-        holder.mTsunami.setImageResource(gempa.tsunami == 1 ? R.drawable.ic_tsunami : R.color.putih);
+        //holder.mTsunami.setImageResource(gempa.tsunami == 1 ? R.drawable.ic_tsunami : R.color.putih);
+        holder.mTsunami.setVisibility(gempa.tsunami == 1 ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override

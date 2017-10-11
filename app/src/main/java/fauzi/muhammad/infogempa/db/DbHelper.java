@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "Gempa.db";
 
     public DbHelper(Context context) {
@@ -23,12 +23,12 @@ public class DbHelper extends SQLiteOpenHelper {
                 GempaContract.GempaEntry.COLUMN_NAME_PLACE + " TEXT, " +
                 GempaContract.GempaEntry.COLUMN_NAME_DATE + " DATE, " +
                 GempaContract.GempaEntry.COLUMN_NAME_DEPTH + " REAL)";
-        sqLiteDatabase.execSQL(SQL_CREATE_TABLE); sqLiteDatabase.close();}
+        sqLiteDatabase.execSQL(SQL_CREATE_TABLE);}
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int old, int update) {
         switch (old){
-            case 1 :
+            case 3 :
                 String SQL_ADD_COLUMN_LONGITUDE = "ALTER TABLE " + GempaContract.GempaEntry.TABLE_NAME +
                         " ADD " + GempaContract.GempaEntry.COLUMN_NAME_LONGITUDE +
                         " TEXT";
@@ -41,7 +41,7 @@ public class DbHelper extends SQLiteOpenHelper {
                         " ADD " + GempaContract.GempaEntry.COLUMN_NAME_TSUNAMI +
                         " REAL";
                 sqLiteDatabase.execSQL(SQL_ADD_COLUMN_TSUNAMI);
-                sqLiteDatabase.close();
+                //sqLiteDatabase.close();
                 break;
         }
     }

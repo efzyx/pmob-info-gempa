@@ -35,7 +35,7 @@ import fauzi.muhammad.infogempa.db.DbHelper;
 
 import static fauzi.muhammad.infogempa.db.GempaContract.GempaEntry.TABLE_NAME;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
